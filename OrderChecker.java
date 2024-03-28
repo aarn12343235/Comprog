@@ -19,7 +19,7 @@ public class OrderChecker {//class name
         if (nut < bolts)//nuts must be atleast as many as bolts
             System.out.print("Too few nuts!");
         else{
-            if ((washers * 2) < bolts)//washers must be atleast as twice many as bolts
+            if (washers < (bolts * 2))//washers must be atleast as twice many as bolts
                 System.out.print("Too few washers!");
             else
                 System.out.print("Order is Ok!");//order is okay if order is right
