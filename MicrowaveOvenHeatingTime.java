@@ -20,8 +20,10 @@ public class MicrowaveOvenHeatingTime {
                 time += time / 2;//2 items adds 50% to the heating time
             else
                 time *= 2;//3 itmes doubles the heating time
+            
             minutes = time / 100;
             seconds = time % 100;//this variable stores minutes and seconds using integer arithmetic
+            
             if(seconds > 60){//if seconds exceed 60, adds 1 minute
                 minutes += 1;
                 seconds -= 60;
