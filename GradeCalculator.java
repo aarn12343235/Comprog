@@ -8,53 +8,19 @@ public class GradeCalculator {
         double quiz, labworks, midtermExam, finalExam, midtermGrade, finalGrade, midtermGradeForFinals;
 
         do {
-            System.out.println("\nGRADING SYSTEM");
-            System.out.println("Options:");
-            System.out.println("[1] Compute Midterm Grade");
-            System.out.println("[2] Compute Final Grade");
-            System.out.println("[3] Quit Application");
+            System.out.println("\nGRADING SYSTEM\nOptions:\n[1] Compute Midterm Grade\n[2] Compute Final Grade\n[3] Quit Application");
             System.out.print("Please press [1] or [2] or [3]: ");
             choice = scan.nextLine();
 
             switch (choice) {
                 case "1":
-                    System.out.println("You choose to calculate your midterm grade.");
-                    do {
-                        System.out.print("Enter quiz grade: ");
-                        quiz = scan.nextDouble();
-                        scan.nextLine();
-                        if (quiz < 0 || quiz > 3.9) 
-                            System.out.println("Invalid input! Grade must be between 0 and 3.9.");
-                    } while (quiz < 0 || quiz > 3.9);
-
-                    do {
-                        System.out.print("Enter lab works grade: ");
-                        labworks = scan.nextDouble();
-                        scan.nextLine();
-                        if (labworks < 0 || labworks > 3.9) 
-                            System.out.println("Invalid input! Grade must be between 0 and 3.9.");
-                    } while (labworks < 0 || labworks > 3.9);
-
-                    do {
-                        System.out.print("Enter midterm exam grade: ");
-                        midtermExam = scan.nextDouble();
-                        scan.nextLine();
-                        if (midtermExam < 0 || midtermExam > 3.9) 
-                            System.out.println("Invalid input! Grade must be between 0 and 3.9.");
-                    } while (midtermExam < 0 || midtermExam > 3.9);
-
-                    midtermGrade = Math.floor(((quiz * 0.20) + (labworks * 0.40) + (midtermExam * 0.40)) * 10) / 10;
-                    System.out.println("Midterm Grade: " + midtermGrade);
-                    System.out.println("REMARKS: " + (midtermGrade >= 1.0 && midtermGrade <= 3.9 ? "PASSED" : "FAILED"));
-                    break;
-
                 case "2":
-                    System.out.println("You choose to calculate your final grade.");
+                    System.out.println("You choose to calculate your " + (choice.equals("1") ? "midterm" : "final") + " grade.");
                     do {
                         System.out.print("Enter quiz grade: ");
                         quiz = scan.nextDouble();
                         scan.nextLine();
-                        if (quiz < 0 || quiz > 3.9) 
+                        if (quiz < 0 || quiz > 3.9)
                             System.out.println("Invalid input! Grade must be between 0 and 3.9.");
                     } while (quiz < 0 || quiz > 3.9);
 
@@ -62,30 +28,44 @@ public class GradeCalculator {
                         System.out.print("Enter lab works grade: ");
                         labworks = scan.nextDouble();
                         scan.nextLine();
-                        if (labworks < 0 || labworks > 3.9) 
+                        if (labworks < 0 || labworks > 3.9)
                             System.out.println("Invalid input! Grade must be between 0 and 3.9.");
                     } while (labworks < 0 || labworks > 3.9);
 
-                    do {
-                        System.out.print("Enter final exam grade: ");
-                        finalExam = scan.nextDouble();
-                        scan.nextLine();
-                        if (finalExam < 0 || finalExam > 3.9) 
-                            System.out.println("Invalid input! Grade must be between 0 and 3.9.");
-                    } while (finalExam < 0 || finalExam > 3.9);
+                    if (choice.equals("1")) {
+                        do {
+                            System.out.print("Enter midterm exam grade: ");
+                            midtermExam = scan.nextDouble();
+                            scan.nextLine();
+                            if (midtermExam < 0 || midtermExam > 3.9)
+                                System.out.println("Invalid input! Grade must be between 0 and 3.9.");
+                        } while (midtermExam < 0 || midtermExam > 3.9);
 
-                    do {
-                        System.out.print("Enter midterm grade: ");
-                        midtermGradeForFinals = scan.nextDouble();
-                        scan.nextLine();
-                        if (midtermGradeForFinals < 0 || midtermGradeForFinals > 3.9) 
-                            System.out.println("Inavlid grade. Must be within 0 - 3.9!");
-                    } while (midtermGradeForFinals < 0 || midtermGradeForFinals > 3.9);
+                        midtermGrade = Math.floor(((quiz * 0.20) + (labworks * 0.40) + (midtermExam * 0.40)) * 10) / 10;
+                        System.out.println("Midterm Grade: " + midtermGrade);
+                        System.out.println("REMARKS: " + (midtermGrade >= 1.0 && midtermGrade <= 3.9 ? "PASSED" : "FAILED"));
+                    } 
+                    else {
+                        do {
+                            System.out.print("Enter final exam grade: ");
+                            finalExam = scan.nextDouble();
+                            scan.nextLine();
+                            if (finalExam < 0 || finalExam > 3.9)
+                                System.out.println("Invalid input! Grade must be between 0 and 3.9.");
+                        } while (finalExam < 0 || finalExam > 3.9);
 
-                    finalGrade = (quiz * 0.20) + (labworks * 0.40) + (finalExam * 0.40);
-                    finalGrade = Math.floor((finalGrade + (midtermGradeForFinals * 0.40)) * 10) / 10;
-                    System.out.println("Final Grade: " + finalGrade);
-                    System.out.println("REMARKS: " + (finalGrade >= 1.0 && finalGrade <= 3.9 ? "PASSED" : "FAILED"));
+                        do {
+                            System.out.print("Enter midterm grade: ");
+                            midtermGradeForFinals = scan.nextDouble();
+                            scan.nextLine();
+                            if (midtermGradeForFinals < 0 || midtermGradeForFinals > 3.9)
+                                System.out.println("Invalid grade. Must be within 0 - 3.9!");
+                        } while (midtermGradeForFinals < 0 || midtermGradeForFinals > 3.9);
+
+                        finalGrade = Math.floor(((quiz * 0.20) + (labworks * 0.40) + (finalExam * 0.40)) * 10) / 10;
+                        finalGrade = Math.floor(((finalGrade * 0.60) + (midtermGradeForFinals * 0.40)) * 10) / 10;                        System.out.println("Final Grade: " + finalGrade);
+                        System.out.println("REMARKS: " + (finalGrade >= 1.0 && finalGrade <= 3.9 ? "PASSED" : "FAILED"));
+                    }
                     break;
 
                 case "3":
